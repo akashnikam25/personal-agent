@@ -3,6 +3,21 @@ raw/
 wiki/
 .obsidian/
 
+# Media/binary files — never push regardless of location
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.webp
+*.bmp
+*.pdf
+*.docx
+*.xlsx
+*.pptx
+*.mp3
+*.mp4
+
 # System
 .DS_Store
 .env
