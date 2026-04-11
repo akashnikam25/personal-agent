@@ -1,0 +1,12 @@
+# Personal data — never push to GitHub
+raw/
+wiki/
+.obsidian/
+
+# System
+.DS_Store
+.env
+node_modules/
+__pycache__/
+*.pyc
+.claude/
