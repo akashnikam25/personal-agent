@@ -50,6 +50,29 @@ Files can be dropped anywhere in `raw/` — root, existing subfolder, new subfol
 
 For each unprocessed file, follow the Ingest workflow below.
 
+### Handling images
+
+Images (`.png`, `.jpg`, `.jpeg`, `.gif`, `.svg`, `.webp`) dropped in `raw/` are treated as sources too.
+
+**Standalone images** (e.g. `raw/progress-photo.jpg`, `raw/whiteboard-sketch.png`):
+1. View the image to understand its content
+2. Create a source summary in `wiki/sources/` describing what the image shows
+3. Embed the image in the source summary and any relevant entity/concept pages using relative path: `![description](../../raw/path/to/image.jpg)`
+4. Auto-detect domain from the image content
+5. Update index and log as usual
+
+**Images alongside documents** (e.g. `raw/my-project/diagram.png` next to `raw/my-project/notes.md`):
+1. When ingesting the document, also view related images in the same folder
+2. Embed relevant images in the source summary and wiki pages
+3. Images don't need their own separate source summary — they're part of the document's ingest
+
+**Image embedding syntax** (Obsidian-compatible):
+```markdown
+![Description of image](../../raw/folder/image-name.jpg)
+```
+
+Use relative paths from `wiki/` to `raw/` so images render in Obsidian when both folders are in the same vault root.
+
 ---
 
 ## Compounding: How Conversations Build the Wiki
