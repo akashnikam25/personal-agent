@@ -39,7 +39,33 @@ The Sources section in `index.md` lists every file that has been processed.
 
 ---
 
-## On Every Query — Execute This Flow First
+## On First Query of the Day — Execute This Flow First
+
+The sync flow below runs **once per day** (on the first user query of the day),
+not on every message. This avoids redundant filesystem checks for a single-user
+wiki where `raw/` only changes when the user explicitly drops files in.
+
+### When to run the sync flow
+
+Run Steps 0–2 below if **any** of these are true:
+
+1. **First query of the day** — the most recent entry in `wiki/log.md` has a
+   date that is not today's date (or the log is empty).
+2. **User explicitly requests it** — phrases like "sync", "check raw",
+   "re-ingest", "rescan", "what's new", or "did you see the new file".
+3. **User mentions adding a file** — e.g. "I just dropped X in raw/" or
+   "ingest the new doc."
+
+Otherwise, skip straight to Step 3 (answer from the wiki). Do **not** run the
+sync flow on every message.
+
+Quick check for today's date vs. last log entry:
+
+```bash
+TODAY=$(date +%Y-%m-%d)
+LAST=$(grep -oE "^## \[[0-9]{4}-[0-9]{2}-[0-9]{2}\]" wiki/log.md | tail -1 | tr -d '[]## ')
+[[ "$LAST" != "$TODAY" ]] && echo "sync needed"
+```
 
 ### Step 0: Check if lint is due
 

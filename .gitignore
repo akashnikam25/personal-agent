@@ -25,3 +25,5 @@ node_modules/
 __pycache__/
 *.pyc
 .claude/
+wiki/entities/.raw/
+.claude/CLAUDE.md
