@@ -200,15 +200,19 @@ date_updated: YYYY-MM-DD
 # Active Context
 
 ## Currently working on
+
 - ...
 
 ## Active decisions
+
 - YYYY-MM-DD: <decision> (see [[entities/relevant-page]])
 
 ## Open questions
+
 - ...
 
 ## Preferences
+
 - ...
 ```
 
@@ -275,8 +279,8 @@ title: Page Title
 type: source | entity | concept | analysis | state
 domain: auto-detected
 tags: [relevant, tags]
-sources: [raw-filename]      # for source pages
-source_hash: sha256:abc123…  # for source pages — content hash of the raw file
+sources: [raw-filename] # for source pages
+source_hash: sha256:abc123… # for source pages — content hash of the raw file
 date_created: YYYY-MM-DD
 date_updated: YYYY-MM-DD
 ---
@@ -317,14 +321,14 @@ sidecar file in the entity page's "Sources" section.
 
 ## When to File an Analysis Page
 
-| Situation                                | Action                                  |
-| ---------------------------------------- | --------------------------------------- |
-| Answer synthesizes 2+ wiki pages         | File as `analyses/` page                |
-| Answer reveals a non-obvious connection  | File as `analyses/` page                |
-| User says "save this" or "remember this" | File as `analyses/` page                |
+| Situation                                | Action                                         |
+| ---------------------------------------- | ---------------------------------------------- |
+| Answer synthesizes 2+ wiki pages         | File as `analyses/` page                       |
+| Answer reveals a non-obvious connection  | File as `analyses/` page                       |
+| User says "save this" or "remember this" | File as `analyses/` page                       |
 | User states a preference or decision     | Update relevant entity/concept page + state.md |
-| User corrects existing wiki content      | Update page, note contradiction, log it |
-| Simple factual lookup from one page      | Just answer, nothing filed              |
+| User corrects existing wiki content      | Update page, note contradiction, log it        |
+| Simple factual lookup from one page      | Just answer, nothing filed                     |
 
 ---
 
@@ -427,3 +431,4 @@ wiki for queries.
 12. **Hash, don't trust mtime** — use `sha256sum` to detect re-ingest needs
 13. **Update state.md on decisions and preferences** — it's the operational layer separate from world knowledge
 14. **Run verify.sh at session start** — catch drift early
+15. **Sync files one at a time when there are many** — if there are multiple unprocessed files, ingest them sequentially (one file fully completed before starting the next) to avoid getting stuck mid-way through a large batch

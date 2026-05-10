@@ -427,3 +427,4 @@ wiki for queries.
 12. **Hash, don't trust mtime** — use `sha256sum` to detect re-ingest needs
 13. **Update state.md on decisions and preferences** — it's the operational layer separate from world knowledge
 14. **Run verify.sh at session start** — catch drift early
+15. **Sync files one at a time when there are many** — if there are multiple unprocessed files, ingest them sequentially (one file fully completed before starting the next) to avoid getting stuck mid-way through a large batch
